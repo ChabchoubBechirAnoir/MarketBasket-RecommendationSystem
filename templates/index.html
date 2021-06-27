@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+
+<html lang="en-US">
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>E-Shop</title>
+
+	<!-- Latest compiled and minified CSS -->
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<!-- Google Font -->
+
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700|Raleway:400,300,500,700,600' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" type="text/css">
+
+    <!-- Theme Stylesheet -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css')}}">
+
+</head>
+
+<body>
+
+    <div class="top-bar">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="action pull-right">
+
+                        <ul>
+
+                            <li><a href=""><i class="fa fa-user"></i> Login</a></li>
+
+                            <li><a href=""><i class="fa fa-lock"></i> Register</a></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="header">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3 col-sm-4">
+
+                    <div class="logo">
+
+                        <a href="index.html">
+
+                            <img src="{{ url_for('static', filename='images/supcom.png')}}" alt="Orani E-shop">
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-7 col-sm-5">
+
+                    <div class="search-form">
+
+                        <form class="navbar-form" role="search" action="{{ url_for('search',tag=tag) }}" method="GET">
+
+                            <div class="form-group">
+
+                              <input type="text" class="form-control" name="tag" placeholder="What do you need...">
+
+                            </div>
+
+                            <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-2 col-sm-3">
+
+                    <div class="cart">
+
+                        <div class="cart-icon">
+
+                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+
+                        </div>
+
+                       
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="slider">
+
+        <div class="container">
+
+            <div class="row">
+                 SHOPPING CART
+                            <table style="border: 1px solid black;">
+                                {% for ord in order %}
+                                <tr style="border: 1px solid black;">
+                                    <th style="border: 1px solid black;">- {{ord}}</th>
+                                  </tr>
+                                {% endfor %}
+                                
+                    
+                              </table>
+            </div>
+        </div>
+
+    </div>
+  <div class="featured-items">
+
+        <div class="container">
+
+            <div class="row">
+
+                <ul class="nav nav-tabs nav-product-tabs">
+
+                    <li class="active"><a data-toggle="tab">Trending Items</a></li>
+                    <li class="pull-right collection-url"><a >View All <i class="fa fa-long-arrow-right"></i></a></li>
+                    
+                        
+                </ul>
+                </div>
+                <div class="tab-content">
+                    {% for name, link in near.items() %}
+                    <div class="tab-pane active" id="trending">
+
+                        <div class="col-md-3 col-sm-4">
+
+                            <div class="single-product">
+
+                                <div class="product-block">
+
+                                    <img src={{link}} alt="{{name}}" class="thumbnail" width="100"  height="200">
+
+                                    <div class="product-description text-center">
+
+                                        <p class="title">{{name}}</p>
+
+
+                                    </div>
+
+                                    <div class="product-hover">
+
+                                        <ul>
+                                            <form action="" method="POST">
+                                                <input type="hidden" id="name" name="name" value="{{name}}"><br><br>
+                                                <li><a href=""><i class="fa fa-cart-arrow-down"><input type="submit" class="fa fa-cart-arrow-down" value="Add"></i></a></li>
+                                            
+                                              </form>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                    {% endfor %}
+                    </div>
+                <div class="tab-content">
+                    {% for name, link in dictAll.items() %}
+                    <div class="tab-pane active" id="trending">
+
+                        <div class="col-md-3 col-sm-4">
+
+                            <div class="single-product">
+
+                                <div class="product-block">
+
+                                    <img src={{link}} alt="{{name}}" class="thumbnail" width="100"  height="200">
+
+                                    <div class="product-description text-center">
+
+                                        <p class="title">{{name}}</p>
+
+
+                                    </div>
+
+                                    <div class="product-hover">
+
+                                        <ul>
+                                            <form action="" method="POST">
+                                                <input type="hidden" id="name" name="name" value="{{name}}"><br><br>
+                                                <li><a href=""><i class="fa fa-cart-arrow-down"><input type="submit" class="fa fa-cart-arrow-down" value="Add"></i></a></li>
+                                            
+                                              </form>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</body>
+
+</html>
